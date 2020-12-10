@@ -131,7 +131,10 @@ public class UserService implements UserDetailsService {
     }
 
     public void updateMoney(User user, long cash) {
+        if(cash > 0) {
+            user.setMoney(user.getMoney() + cash);
+        }
 
-
+        userRepo.save(user);
     }
 }
