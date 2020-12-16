@@ -17,7 +17,7 @@
                 </div>
             </div>
         <#else>
-            No message
+            No ads
         </#list>
     </div>
 </@c.page>

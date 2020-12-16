@@ -7,11 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
 import java.util.Map;
 
 @Controller
@@ -86,9 +84,27 @@ public class UserController {
     @PostMapping("cashReplenishment")
     public String updateMoney(
             @AuthenticationPrincipal User user,
-            @RequestParam("cash") long cash
+            @RequestParam long cash
     ) {
-        userService.updateMoney(user, cash);
+        userService.moneyUpdate(user, cash);
+
+        return "redirect:/user/billing";
+    }
+
+    @GetMapping("cashTransfer")
+    public String getCashTrans(Model model, @AuthenticationPrincipal User user) {
+        model.addAttribute("username", user.getUsername());
+
+        return "cashTransfer";
+    }
+
+    @PostMapping("cashTransfer")
+    public String moneyTransfer(
+            @AuthenticationPrincipal User user,
+            @RequestParam String user1,
+            @RequestParam long cash
+    ) {
+        userService.transferMoney(user, cash);
 
         return "redirect:/user/billing";
     }

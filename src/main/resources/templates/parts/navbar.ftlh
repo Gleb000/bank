@@ -14,7 +14,7 @@
                     <a class="nav-link" href="/main">List of ads</a>
                 </li>
             </#if>
-            <#if user??>
+            <#if user?? && !isAdmin>
                 <li class="nav-item">
                     <a class="nav-link" href="/user/billing">Cash billing</a>
                 </li>

@@ -10,7 +10,7 @@
         <a class="ui-icon-link" href="/user/cashReplenishment">Balance replenishment</a>
     </div>
     <div>
-        <a class="ui-icon-link" href="/user/billing">Transfer of funds</a>
+        <a class="ui-icon-link" href="/user/cashTransfer">Transfer of funds</a>
     </div>
     <input type="hidden" name="_csrf" value="${_csrf.token}" />
 </@c.page>

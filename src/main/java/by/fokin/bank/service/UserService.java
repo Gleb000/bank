@@ -4,6 +4,7 @@ import by.fokin.bank.domain.Role;
 import by.fokin.bank.domain.User;
 import by.fokin.bank.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,12 +12,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import javax.transaction.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class UserService implements UserDetailsService {
+
     @Autowired
     private UserRepo userRepo;
 
@@ -130,11 +131,21 @@ public class UserService implements UserDetailsService {
         }
     }
 
-    public void updateMoney(User user, long cash) {
-        if(cash > 0) {
-            user.setMoney(user.getMoney() + cash);
-        }
+    public void moneyUpdate(User user, long cash) {
+        long money2 = user.getMoney();
+        long money3 = money2 + cash;
+
+        user.setMoney(money3);
 
         userRepo.save(user);
+    }
+
+    public void transferMoney(User user, long cash) {
+        long difference = user.getMoney() - cash;
+
+        if (difference > 0) {
+            user.setMoney(difference);
+
+        }
     }
 }

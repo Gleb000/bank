@@ -28,6 +28,7 @@ public class User implements UserDetails {
     private String activationCode;
 
     private long money;
+    private long cash;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
@@ -125,5 +126,13 @@ public class User implements UserDetails {
 
     public void setMoney(long money) {
         this.money = money;
+    }
+
+    public long getCash() {
+        return cash;
+    }
+
+    public void setCash(long cash) {
+        this.cash = cash;
     }
 }
