@@ -63,8 +63,13 @@
             </div>
         </#if>
         <input type="hidden" name="_csrf" value="${_csrf.token}" />
-        <#if !isRegisterForm><a href="/registration">Add new user</a></#if>
-        <button class="btn btn-primary" type="submit"><#if isRegisterForm>Create<#else>Sign In</#if></button>
+        <#if user?? && !isRegisterForm>
+            <div>
+                <label class="col-sm-7 col-form-label">Enter the password and confirm the money transfer!!!</label>
+            </div>
+        </#if>
+        <#if !isRegisterForm && !user??><a href="/registration">Add new user</a></#if>
+        <button class="btn btn-primary" type="submit"><#if isRegisterForm>Create<#else><#if !user??>Sign In<#else>Confirm!</#if></#if></button>
     </form>
 </#macro>
 

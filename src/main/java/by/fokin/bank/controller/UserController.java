@@ -88,7 +88,7 @@ public class UserController {
     ) {
         userService.moneyUpdate(user, cash);
 
-        return "redirect:/user/billing";
+        return "redirect:/login";
     }
 
     @GetMapping("cashTransfer")
@@ -101,11 +101,11 @@ public class UserController {
     @PostMapping("cashTransfer")
     public String moneyTransfer(
             @AuthenticationPrincipal User user,
-            @RequestParam String user1,
-            @RequestParam long cash
+            @RequestParam long cash,
+            @RequestParam String user1
     ) {
-        userService.transferMoney(user, cash);
+        userService.transferMoney(user, cash, user1);
 
-        return "redirect:/user/billing";
+        return "redirect:/login";
     }
 }

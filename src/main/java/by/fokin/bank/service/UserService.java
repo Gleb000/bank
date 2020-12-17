@@ -140,12 +140,18 @@ public class UserService implements UserDetailsService {
         userRepo.save(user);
     }
 
-    public void transferMoney(User user, long cash) {
+    public void transferMoney(User user, long cash, String user1) {
         long difference = user.getMoney() - cash;
+        User recipient = userRepo.findByUsername(user1);
+        long sum = recipient.getMoney() + cash;
+
 
         if (difference > 0) {
             user.setMoney(difference);
-
+            recipient.setMoney(sum);
         }
+
+        userRepo.save(user);
+        userRepo.save(recipient);
     }
 }
