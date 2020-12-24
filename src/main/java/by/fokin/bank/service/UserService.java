@@ -84,7 +84,7 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
-    public List<User> findAll() {
+    public List<User> findAll()  {
         return userRepo.findAll();
     }
 
@@ -146,12 +146,57 @@ public class UserService implements UserDetailsService {
         long sum = recipient.getMoney() + cash;
 
 
-        if (difference > 0) {
+        if (difference > 0 && !recipient.getUsername().equals(user.getUsername())) {
             user.setMoney(difference);
             recipient.setMoney(sum);
-        }
 
-        userRepo.save(user);
-        userRepo.save(recipient);
+            userRepo.save(recipient);
+            userRepo.save(user);
+        }
+    }
+
+    public void phoneMoneyTransfer(User user, long cash) {
+        if(cash < user.getMoney()) {
+            user.setMoney(user.getMoney() - cash);
+
+            userRepo.save(user);
+        }
+    }
+
+    long water;
+    long light;
+    long electricity;
+    long servicesSum;
+
+    public long getWater() {
+        water = (long)(30 + Math.random()*70);
+
+        return water;
+    }
+
+    public long getLight() {
+        light = (long)(60 + Math.random()*90);
+
+        return light;
+    }
+
+    public long getElectricity() {
+        electricity = (long)(40 + Math.random()*80);
+
+        return electricity;
+    }
+
+    public long getServicesSum() {
+        servicesSum = water + light + electricity;
+
+        return servicesSum;
+    }
+
+    public void serviceTx(User user, long servicesSum) {
+        if(user.getMoney() > servicesSum) {
+            user.setMoney(user.getMoney() - servicesSum);
+
+            userRepo.save(user);
+        }
     }
 }

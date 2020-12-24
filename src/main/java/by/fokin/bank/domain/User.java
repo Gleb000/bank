@@ -120,7 +120,7 @@ public class User implements UserDetails {
         this.activationCode = activationCode;
     }
 
-    public long getMoney() {
+    public long getMoney()   {
         return money;
     }
 

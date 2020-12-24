@@ -108,4 +108,41 @@ public class UserController {
 
         return "redirect:/login";
     }
+
+    @GetMapping("mobilePay")
+    public String getMobilePay(Model model, @AuthenticationPrincipal User user) {
+        model.addAttribute("username", user.getUsername());
+
+        return "mobilePay";
+    }
+
+    @PostMapping("mobilePay")
+    public String payPhoneNumber(
+            @AuthenticationPrincipal User user,
+            @RequestParam long cash
+    ) {
+        userService.phoneMoneyTransfer(user, cash);
+
+        return "redirect:/login";
+    }
+
+    @GetMapping("servicesPay")
+    public String getServiceInfo(Model model, @AuthenticationPrincipal User user) {
+        model.addAttribute("username", user.getUsername());
+        model.addAttribute("water", userService.getWater());
+        model.addAttribute("light", userService.getLight());
+        model.addAttribute("electricity", userService.getElectricity());
+        model.addAttribute("servicesSum", userService.getServicesSum());
+
+        return "servicesPay";
+    }
+
+    @PostMapping("servicesPay")
+    public String payService(
+            @AuthenticationPrincipal User user
+    ) {
+        userService.serviceTx(user, userService.getServicesSum());
+
+        return "redirect:/login";
+    }
 }

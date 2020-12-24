@@ -11,7 +11,7 @@
                 </label>
             </div>
         </div>
-        <div>
+        <div class="form-group row">
             <label class="col-sm-2 col-form-label">Enter the user:</label>
             <div class="col-sm-6">
                 <label>

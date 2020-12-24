@@ -12,5 +12,11 @@
     <div>
         <a class="ui-icon-link" href="/user/cashTransfer">Transfer of funds</a>
     </div>
+    <div>
+        <a class="ui-icon-link" href="/user/mobilePay">Mobile payment</a>
+    </div>
+    <div>
+        <a class="ui-icon-link" href="/user/servicesPay">Payment of utility services</a>
+    </div>
     <input type="hidden" name="_csrf" value="${_csrf.token}" />
 </@c.page>
