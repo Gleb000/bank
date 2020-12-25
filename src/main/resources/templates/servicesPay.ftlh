@@ -19,7 +19,7 @@
             <label class="col-sm-2 col-form-label">To pay:</label>
             <label class="col-sm-2 col-form-label">${servicesSum} $</label>
         </div>
-        <button class="btn btn-primary" type="submit">Enroll</button>
+        <button class="btn btn-primary" type="submit">Pay</button>
         <input type="hidden" name="_csrf" value="${_csrf.token}" />
     </form>
 </@c.page>
