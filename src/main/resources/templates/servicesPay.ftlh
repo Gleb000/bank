@@ -8,8 +8,8 @@
             <label class="col-sm-2 col-form-label">${water} $</label>
         </div>
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Light:</label>
-            <label class="col-sm-2 col-form-label">${light} $</label>
+            <label class="col-sm-2 col-form-label">Gas:</label>
+            <label class="col-sm-2 col-form-label">${gas} $</label>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Electricity:</label>

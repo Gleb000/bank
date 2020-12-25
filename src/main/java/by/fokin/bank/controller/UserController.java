@@ -130,7 +130,7 @@ public class UserController {
     public String getServiceInfo(Model model, @AuthenticationPrincipal User user) {
         model.addAttribute("username", user.getUsername());
         model.addAttribute("water", userService.getWater());
-        model.addAttribute("light", userService.getLight());
+        model.addAttribute("gas", userService.getGas());
         model.addAttribute("electricity", userService.getElectricity());
         model.addAttribute("servicesSum", userService.getServicesSum());
 

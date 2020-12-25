@@ -18,6 +18,11 @@ import java.util.stream.Collectors;
 @Service
 public class UserService implements UserDetailsService {
 
+    long water;
+    long gas;
+    long electricity;
+    long servicesSum;
+
     @Autowired
     private UserRepo userRepo;
 
@@ -39,7 +44,7 @@ public class UserService implements UserDetailsService {
     }
 
     public boolean addUser(User user) {
-        User userFromDb = userRepo.findByUsername(user.getUsername());
+        User userFromDb = userRepo.findByUsername(user.getUsername());  
 
         if (userFromDb != null) {
             return false;
@@ -163,21 +168,16 @@ public class UserService implements UserDetailsService {
         }
     }
 
-    long water;
-    long light;
-    long electricity;
-    long servicesSum;
-
     public long getWater() {
         water = (long)(30 + Math.random()*70);
 
         return water;
     }
 
-    public long getLight() {
-        light = (long)(60 + Math.random()*90);
+    public long getGas() {
+        gas = (long)(60 + Math.random()*90);
 
-        return light;
+        return gas;
     }
 
     public long getElectricity() {
@@ -187,7 +187,7 @@ public class UserService implements UserDetailsService {
     }
 
     public long getServicesSum() {
-        servicesSum = water + light + electricity;
+        servicesSum = water + gas + electricity;
 
         return servicesSum;
     }

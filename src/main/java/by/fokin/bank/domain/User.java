@@ -2,7 +2,6 @@ package by.fokin.bank.domain;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;

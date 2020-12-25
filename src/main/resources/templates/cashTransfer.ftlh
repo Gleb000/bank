@@ -15,7 +15,7 @@
             <label class="col-sm-2 col-form-label">Enter the user:</label>
             <div class="col-sm-6">
                 <label>
-                    <input type="text" name="user1" class="form-control" placeholder="Oleg"/>
+                    <input type="text" name="user1" class="form-control" placeholder="Name"/>
                 </label>
             </div>
         </div>
