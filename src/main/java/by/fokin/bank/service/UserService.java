@@ -56,7 +56,7 @@ public class UserService implements UserDetailsService {
 
         userRepo.save(user);
 
-        sendMessage(user);
+        //sendMessage(user);
 
         return true;
     }
@@ -130,9 +130,9 @@ public class UserService implements UserDetailsService {
 
         userRepo.save(user);
 
-        if (isEmailChanged) {
+        /*if (isEmailChanged) {
             sendMessage(user);
-        }
+        }*/
     }
 
     public void moneyUpdate(User user, long cash) {
