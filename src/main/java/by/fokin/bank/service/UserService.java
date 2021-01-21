@@ -136,31 +136,36 @@ public class UserService implements UserDetailsService {
     }
 
     public void moneyUpdate(User user, long cash) {
-        long money2 = user.getMoney();
-        long money3 = money2 + cash;
 
-        user.setMoney(money3);
+        if (cash > 0) {
+            long money2 = user.getMoney();
+            long money3 = money2 + cash;
+
+            user.setMoney(money3);
+        }
 
         userRepo.save(user);
     }
 
     public void transferMoney(User user, long cash, String user1) {
         long difference = user.getMoney() - cash;
-        User recipient = userRepo.findByUsername(user1);
-        long sum = recipient.getMoney() + cash;
 
+        if (userRepo.findByUsername(user1) != null) {
+            User recipient = userRepo.findByUsername(user1);
+            long sum = recipient.getMoney() + cash;
 
-        if (difference > 0 && !recipient.getUsername().equals(user.getUsername())) {
-            user.setMoney(difference);
-            recipient.setMoney(sum);
+            if (difference >= 0 && !recipient.getUsername().equals(user.getUsername()) && cash > 0) {
+                user.setMoney(difference);
+                recipient.setMoney(sum);
 
-            userRepo.save(recipient);
-            userRepo.save(user);
+                userRepo.save(recipient);
+                userRepo.save(user);
+            }
         }
     }
 
     public void phoneMoneyTransfer(User user, long cash) {
-        if(cash < user.getMoney()) {
+        if(cash < user.getMoney() && cash > 0) {
             user.setMoney(user.getMoney() - cash);
 
             userRepo.save(user);
@@ -192,7 +197,7 @@ public class UserService implements UserDetailsService {
     }
 
     public void serviceTx(User user, long servicesSum) {
-        if(user.getMoney() > servicesSum) {
+        if(user.getMoney() >= servicesSum) {
             user.setMoney(user.getMoney() - servicesSum);
 
             userRepo.save(user);
